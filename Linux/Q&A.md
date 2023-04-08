@@ -1,3 +1,7 @@
+## 命令行打开显示器设置
+
+    xfce4-display-settings --minimal
+    
 ## 开始菜单没了
 
 显示器原来用的 HDMI，后面换了 DP 接口，结果开始菜单没了。
