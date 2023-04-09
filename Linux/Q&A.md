@@ -29,3 +29,16 @@
         resolution: 1: 3840x2160~60Hz 2: 1620x2880~60Hz
     API: OpenGL Message: Unable to show GL data. Required tool glxinfo
         missing.
+
+## 关机、重启无效
+
+关机，重启都没反应，用命令关机、重启提示
+
+     Failed to hibernate system via logind: There's already a shutdown or
+      sleep operation in progress
+
+解决办法：
+
+    systemctl cancel
+
+原因可能是电源管理的 suspend 造成的，关掉试试先。
