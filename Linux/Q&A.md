@@ -42,3 +42,6 @@
     systemctl cancel
 
 原因可能是电源管理的 suspend 造成的，关掉试试先。
+
+
+# 插
