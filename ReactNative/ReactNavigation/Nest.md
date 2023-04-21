@@ -26,6 +26,7 @@
         );
     }
 
+
 # 注意事项
 
 ### 每个 navigator 都有自己的导航 history
@@ -37,14 +38,3 @@
 
 例如，你通过 sub stack navigator screen 的 title option 给了一个 title string，
 它不会影响父 navigator 中的 title。
-
-
-
- 
-```mermaid
-graph LR;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
