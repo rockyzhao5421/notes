@@ -190,6 +190,8 @@ graph
 graph 
     Start(开始) --> Loginpage[进入登入页面]
     Loginpage --> Checkname{"用户名是否为空?"}
+    Checkname --为空-->showDialog[提示输入用户名]
+    Checkname --不为空-->Checkpsw{"密码是否为空？"}
 ```
 
 ### sdf
