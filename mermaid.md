@@ -188,9 +188,9 @@ graph
 
 ```mermaid
 graph 
-    Start(开始) --> Loginpage[进入登入页面]
-    Loginpage --> Checkname{"用户名是否为空?"}
-    Checkname --为空-->showDialog[提示输入用户名]
+    Start(开始) --> Loginpage[进入登入页面]-->login[点击登入按钮]
+    login --> Checkname{"用户名是否为空?"}
+    Checkname --为空-->showDialog[提示输入用户名]-->login
     Checkname --不为空-->Checkpsw{"密码是否为空？"}
 ```
 
