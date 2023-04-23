@@ -193,19 +193,3 @@ graph
     Checkname --为空-->showDialog[提示输入用户名]-->login
     Checkname --不为空-->Checkpsw{"密码是否为空？"}
 ```
-
-### sdf
-
-
-```mermaid
-graph TB
-    Start(开始) --> Open[打开冰箱门]
-    Open --> Put[把大象放进去]
-    Put[把大象放进去] --> IsFit{"冰箱小不小？"}
-    
-    IsFit -->|不小| Close[把冰箱门关上]
-    Close --> End(结束)
-        
-    IsFit -->|小| Change[换个大冰箱]
-    Change --> Open
-```
