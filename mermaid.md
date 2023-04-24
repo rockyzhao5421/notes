@@ -232,3 +232,98 @@ graph TB
     check_psw -- 为空 -->need_psw_dialog[密码不能为空] --> login
     check_psw -- 不为空 ----> End(结束)
 ```
+
+## 子图
+
+用 ```subgraph``` 和 ```end``` 把要框起来的节点以及它们的关系包裹起来：  
+
+    subgraph title
+        graph definition
+    end
+
+```title``` 就是这个框框的名字或者描述。
+
+举例：  
+
+    flowchart TB
+        c1-->a2
+        subgraph one
+        a1-->a2
+        end
+        subgraph two
+        b1-->b2
+        end
+        subgraph three
+        c1-->c2
+        end
+
+```mermaid
+
+flowchart TB
+    c1-->a2
+    subgraph one
+    a1-->a2
+    end
+    subgraph two
+    b1-->b2
+    end
+    subgraph three
+    c1-->c2
+    end
+
+```
+还可以给子图设置 ID ， 方便子图和子图之前连线：
+
+    flowchart TB
+        c1-->a2
+        subgraph id1 [one]
+        a1-->a2
+        end
+
+
+
+```mermaid
+flowchart TB
+    c1-->a2
+    subgraph ide1 [one]
+    a1-->a2
+    end
+
+```
+
+    flowchart TB
+        c1-->a2
+        subgraph one
+        a1-->a2
+        end
+        subgraph two
+        b1-->b2
+        end
+        subgraph three
+        c1-->c2
+        end
+        one --> two
+        three --> two
+        two --> c2
+
+```mermaid
+
+flowchart TB
+    c1-->a2
+    subgraph A[one]
+    a1-->a2
+    end
+    subgraph two
+    b1-->b2
+    end
+    subgraph three
+    c1-->c2
+    end
+    A --> two
+    three --> two
+    two --> c2
+
+
+```
+和普通节点一样，即可以用 ID 连接，也可以用显示的内容连接
+
