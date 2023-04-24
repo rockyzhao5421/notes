@@ -207,5 +207,5 @@ graph
     check_name --为空-->need_id_dialog[用户名不能为空]-->login
     check_name --不为空-->check_psw{"密码是否为空？"}
     check_psw -- 为空 -->need_psw_dialog[密码不能为空] --> login
-    check_psw -- 不为空 --> End(结束)
+    check_psw -- 不为空 ----> End(结束)
 ```
