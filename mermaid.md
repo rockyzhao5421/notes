@@ -198,10 +198,18 @@ graph
 
 ```
 
-#### 复杂一点的例子
+## 实战
+
+    graph TB
+        start(开始) --> login_page[进入登入页面]-->login[点击登入按钮]
+        login --> check_name{"用户名是否为空?"}
+        check_name --为空-->need_id_dialog[用户名不能为空]-->login
+        check_name --不为空-->check_psw{"密码是否为空？"}
+        check_psw -- 为空 -->need_psw_dialog[密码不能为空] --> login
+        check_psw -- 不为空 ----> End(结束)
 
 ```mermaid
-graph 
+graph TB
     start(开始) --> login_page[进入登入页面]-->login[点击登入按钮]
     login --> check_name{"用户名是否为空?"}
     check_name --为空-->need_id_dialog[用户名不能为空]-->login
