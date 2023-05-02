@@ -64,3 +64,23 @@ navigator 就处理了，如果 call ```navigate('Settings')```,就会交由 sta
 ```navigation.dispatch```:
 
     navigation.dispatch(DrawerActions.toggleDrawer());
+
+### sub navigator 收不到父 navigator 的 Event
+
+例如，stack 嵌套在 tab 里面，stack 中的 screen component 通过 ```navigation.addListener()```监听不到 tab
+的 Event（比如 ```tabPress```）。  
+
+如果要实现这一点，只能通过 ```navigation.getParent``` 来做：
+
+    const unsubscribe = navigation
+            .getParent('MyTabs')
+            .addListener('tabPress', (e) => {
+            // Do something
+        });
+
+```getParent``` 返回父 navigator 的 ```props.navigation```，如果有多个（层） parent，还可以给 parent navigator 一个 ```id``` 来标识：
+
+
+    <Drawer.Navigator id="LeftDrawer">
+        {/* .. */}
+    </Drawer.Navigator>
