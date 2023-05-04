@@ -181,3 +181,58 @@ navigator 就处理了，如果 call ```navigate('Settings')```,就会交由 sta
 如果设为 false，这次跳转， 按返回按钮时就会返回 initial screen，并不会直接返回到执行跳转动作的那个 screen。
 
 # 多层嵌套
+
+当嵌套多个 stack、drawer 或者 bottom tab navigator 时，sub navigator 和 parent navigator 的 header 都会显示出来。但是，通常来说，我们更想要显示 sub navigator screen 的
+header，隐藏 parent navigator 的 header，当然这个 option 也可以放在 navigator 中。
+
+要隐藏哪个 screen 的 header，就把它的 ```headerShow``` option 设置为 false 就可以了：
+
+    function Home() {
+        return (
+            <Tab.Navigator>
+                <Tab.Screen name="Profile" component={Profile} />
+                <Tab.Screen name="Settings" component={Settings} />
+            </Tab.Navigator>
+        );
+    }
+
+    function App() {
+        return (
+            <NavigationContainer>
+                <Stack.Navigator>
+                    <Stack.Screen
+                        name="Home"
+                        component={Home}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen name="EditPost" component={EditPost} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        );
+    }
+
+# 最佳实践
+
+把 嵌套 navigator 作为实现 UI 的手段，不要用它来组织代码。如果你只是想把 screen 分组管理，
+不要通过创建独立的 navigator 来分，用 [Group](https://reactnavigation.org/docs/group) component 来分：
+
+    <Stack.Navigator>
+        {isLoggedIn ? (
+            // Screens for logged in users
+            <Stack.Group>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Profile" component={Profile} />
+            </Stack.Group>
+        ) : (
+            // Auth screens
+            <Stack.Group screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="SignIn" component={SignIn} />
+            <Stack.Screen name="SignUp" component={SignUp} />
+            </Stack.Group>
+        )}
+        {/* Common modal screens */}
+        <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen name="Help" component={Help} />
+            <Stack.Screen name="Invite" component={Invite} />
+        </Stack.Group>
+    </Stack.Navigator>
